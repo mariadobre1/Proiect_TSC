@@ -104,6 +104,5 @@ Componentele principale ale circuitului sunt:
 
 ## Erori
 Urmatoarele erori au fost observate la finalizarea PCB-ului:
-<img width="600" alt="errors" src="https://github.com/user-attachments/assets/![d30d4530-1e53-4faf-b87a-a027ca0d5462](https://github.com/user-attachments/assets/9a97c48f-853a-4105-94e4-090038b2e7b3)
-" />
+<img width="600" alt="errors" src=Images/erori.png/>
 Nu sunt erori care afecteaza functionalitatea(se refera la dimensiunea portului USB sau alte mici diferente)
