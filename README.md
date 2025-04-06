@@ -80,6 +80,13 @@ Componentele principale ale circuitului sunt:
 Întregul circuit a fost conceput în jurul microcontrollerului ESP32-C6-WROOM, un modul preasamblat.
 -- Placa ESP32-WROOM-32 dispune de multiple interfețe pentru conectarea la diferite componente și senzori, cum ar fi pini de I/O, SPI, I2C și UART. Aceste interfețe facilitează integrarea componentelor externe și lărgesc gama de aplicații posibile. De asemenea, placa suportă WiFi 6 pe 2.4 GHz, are Bluetooth 5 integrat și include o antenă dedicată.
 
+ - **Restul pinilor**
+ - **FLASH_CS** este un pin Chip Select pentru selectarea chipului flash extern (pentru comunicarea SPI cu External NOR Flash)
+ - **IO/BOOT** folosit pentru a intra in boot mode – legatura cu butonul de _boot_
+ - **RTC_PWM** pentru semnale Pulse Width Modulation trimise catre Real Time Clock
+ - **RTC_RST** pentru resetarea ceasului
+- **INT_RTC** destinat semnalelor de intrerupere de la modulul RTC, de exemplu in cazul iesirii din moduri de functionare (sleep), pentru executarea unor sarcini periodice, cum ar fi un refresh al display-ului etc.
+
  ESP32-C6 se leaga de cele mai importante module ale circuitului prin intermediul pinilor sai:
  - **Alimentare si reset**
  **3V3** aigura alimentrea modulului, **GND** legatura la masa, **EN** trebuie sa fie pe pozitia _HIGH_ pentru ca modulul sa functioneze (EN va fi controlat de catre butonul RESET)
@@ -93,15 +100,10 @@ Componentele principale ale circuitului sunt:
  avand in vedere ca se face comunicatia cu senzorul prin intermediul protocolului I2C, pentru stabilirea legaturii se vor folosi pinii **GPIO19(SDA)**, **GPIO20(SCL)** si **GPIO17(I2C_PW)** de pe microcontroller
  - **UART(Serial Communication)**
  ESP32-C6 are si interfete seriale, utile pentru debugging sau conexiuni cu alte dispozitive; pinii aferenti comunicarii UART sunt **TXD0** -pentru transmisia datelor respectiv **RXD0** - pentru receptie de date
- - **Restul pinilor**
- - **FLASH_CS** este un pin Chip Select pentru selectarea chipului flash extern (pentru comunicarea SPI cu External NOR Flash)
- - **IO/BOOT** folosit pentru a intra in boot mode – legatura cu butonul de _boot_
- - **RTC_PWM** pentru semnale Pulse Width Modulation trimise catre Real Time Clock
- - **RTC_RST** pentru resetarea ceasului
-- **INT_RTC** destinat semnalelor de intrerupere de la modulul RTC, de exemplu in cazul iesirii din moduri de functionare (sleep), pentru executarea unor sarcini periodice, cum ar fi un refresh al display-ului etc.
 
-## Errors
-La editarea PCB-ului in Fusion 360 am intampinat urmatoarele erori:
-<img width="600" alt="errors" src="C:\Users\Maria\Downloads\d30d4530-1e53-4faf-b87a-a027ca0d5462.jpg" />
+
+## Erori
+Urmatoarele erori au fost observate la finalizarea PCB-ului:
+<" />
 
 Erorile au aparut din cauza dimensiunii gaurilor din mufa USB, asa ca le-am aprobat pe amandoua.
