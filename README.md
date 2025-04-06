@@ -104,6 +104,4 @@ Componentele principale ale circuitului sunt:
 
 ## Erori
 Urmatoarele erori au fost observate la finalizarea PCB-ului:
-<" />
-
-Erorile au aparut din cauza dimensiunii gaurilor din mufa USB, asa ca le-am aprobat pe amandoua.
+Nu sunt erori care afecteaza functionalitatea(se refera la dimensiunea portului USB sau alte mici diferente)
