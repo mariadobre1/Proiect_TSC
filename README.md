@@ -6,7 +6,7 @@
 Proiectul a fost realizat în cadrul disciplinei Testarea Sistemelor de Calcul și are ca scop crearea unui model 3D detaliat pentru o tabletă E-Book Reader. Am realizat proiectarea atât la nivel de circuit, cât și la nivel de design al produsului, utilizând programul Fusion360 de la Autodesk.
 
 ## Block Diagram
-<img width="1000" alt="DiagramaBloc" src="C:https://github.com/user-attachments/assets/d30d4530-1e53-4faf-b87a-a027ca0d5462.jpg" />
+<img width="1000" alt=Images/d30d4530-1e53-4faf-b87a-a027ca0d5462.jpg />
 
 ## Bill of Materials
 | Componenta | Link | Datasheet |
@@ -105,4 +105,8 @@ Componentele principale ale circuitului sunt:
 ## Erori
 Urmatoarele erori au fost observate la finalizarea PCB-ului:
 <img width="600" alt="errors" src=Images/erori.png/>
+
+
+
+
 Nu sunt erori care afecteaza functionalitatea(se refera la dimensiunea portului USB sau alte mici diferente)
