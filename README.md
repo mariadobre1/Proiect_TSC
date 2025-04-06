@@ -39,66 +39,66 @@ Proiectul a fost realizat în cadrul disciplinei Testarea Sistemelor de Calcul �
 ## Functionalitate hardware
 Componentele principale ale circuitului sunt:
 
-- USB C Connector + ESD Protection
+ USB C Connector + ESD Protection
   
  > Se conectează prin portul USB si este folositor pentru alimentarea E-book-ului.
  
-- SD Card
+ SD Card
  
  > Cardul Secure Digital este utilizat pentru stocarea cărților în format electronic. Funcționează la 3.3V și se conectează la microcontroller prin intermediul unei interfețe SPI.
  
-- E-Paper Display, impreuna cu modulele aferente - E-Paper Drive Circuit, E-Paper Display Header, EPD Power
+ E-Paper Display, impreuna cu modulele aferente - E-Paper Drive Circuit, E-Paper Display Header, EPD Power
   
 > Header-ul EPD se conectează la microcontroller prin SPI și face legătura între celelalte componente. Modulul EPD Power furnizează mai multe tensiuni, iar Circuitul de Alimentare E-Paper generează semnalele necesare pentru funcționarea display-ului E-Paper.
  
-- Senzorul de Mediu BME688
+ Senzorul de Mediu BME688
   
  > Acesta este un senzor capabil să măsoare temperatura, umiditatea, presiunea atmosferică și calitatea aerului. Funcționează la 3.3V și se conectează la microcontroller prin interfața I2C.
 
-- Modul RTC DS3231SN
+ Modul RTC DS3231SN
   
  > Acest modul Real-Time Clock are rolul de a păstra data și ora corectă chiar și atunci când microcontroller-ul este oprit. Funcționează pe baterie și include un cristal de 32KHz. Se conectează la ESP32-C6 prin I2C, utilizând pinii SCL și SDA.
 
-- Flash NOR Extern 64MB
+ Flash NOR Extern 64MB
   
 > Aceasta extinde memoria microcontroller-ului, permițând stocarea unor date suplimentare și chiar stocare temporară. Folosește interfața SPI.
 
--	Regulator de Tensiune LDO
+ Regulator de Tensiune LDO
   
 > este un stabilizator de tensiune liniar, care asigura tensiunea de iesire constanta la valoarea de 3.3V pentru microcontroller; are un consum energetic foarte mic, ceea ce il face ideal pentru dispozitive alimentate pe baza de baterie, precum cel de fata
 
-- Supraveghetor de Tensiune
+ Supraveghetor de Tensiune
   
 > folosit pentru monitorizeaza nivelului tensiunii, si pentru a asigura ca sistemul nu poate porni atunci cand avem o tensiune instabila sau mult prea mica
 
-- Qwiic/Stemma QT
+ Qwiic/Stemma QT
   
 > Acesta simplifică conectarea senzorilor și perifericelor la microcontroller, permițând conectarea mai multor dispozitive într-un lanț, fără a fi necesare cabluri separate pentru fiecare semnal. Funcționează pe baza protocolului I2C
 
 
 ## Microcontroller - ESP32-C6
-Intreg circuitul a fost conceput in jurul microcontrollerului ESP32-C6-WROOM, care este un modul preasamblat
-> Placa ESP-WROOM-32 dispune de o varietate de interfete pentru conectarea cu alte componente si senzori, inclusiv pini de I/O, SPI, I2C si UART. Aceastea faciliteaza integrarea si extind gama de aplicatii posibile. Placa foloseste WiFi 6 2.4 GHz, are integrat Bluetooth 5 si antena.
->> <img width="600" alt="ESP32_C6" src="https://github.com/user-attachments/assets/733b906e-1500-4ca2-ba0b-447412d6c4e2" />
-> ESP32-C6 se leaga de cele mai importante module ale circuitului prin intermediul pinilor sai:
-> - **Alimentare si reset**
->> **3V3** aigura alimentrea modulului, **GND** legatura la masa, **EN** trebuie sa fie pe pozitia _HIGH_ pentru ca modulul sa functioneze (EN va fi controlat de catre butonul RESET)
-> - **USB C Connector**
->> deoarece ESP32-C6 are USB nativ, conexiunea se realizeaza direct prin liniile de date **USB_D+** si **USB_D-**, la pinii **GPIO13** si **GPIO14** ai modulului; nu mai este deci nevoie de un convertor serial extern
-> - **SD Card**
->> pentru a comunica cu dispozitive rapide precum SD Card se foloseste interfata SPI(Serial Peripheral Interface), folosind pinii **GPIO27(MISO)** - pentru transfer de la card la ESP, **GPIO7(MOSI)** - pentru transfer invers, **GPIO6(SCK)** -semnalul de ceas care asigura sincronizarea, respectiv **GPIO4(SS_SD)** - chip select
-> - **E-Paper Display**
->> pentru conexiunea si controlul ecranului dispozitivului se folosesc pinii **GPIO11(EPD_CS)** - Chip Select pentru display-ul EPD, **GPIO5(EPD_DC)** - pentru controlul display-ului, **GPIO21(EPD_RST)** - pentru resetarea display-ului, respectiv **GPIO26(EPD_BUSY)**
-> - **Environmental Sensor BME688**
->> avand in vedere ca se face comunicatia cu senzorul prin intermediul protocolului I2C, pentru stabilirea legaturii se vor folosi pinii **GPIO19(SDA)**, **GPIO20(SCL)** si **GPIO17(I2C_PW)** de pe microcontroller
-> - **UART(Serial Communication)**
->> ESP32-C6 are si interfete seriale, utile pentru debugging sau conexiuni cu alte dispozitive; pinii aferenti comunicarii UART sunt **TXD0** -pentru transmisia datelor respectiv **RXD0** - pentru receptie de date
-> - **Restul pinilor**
->> - **FLASH_CS** este un pin Chip Select pentru selectarea chipului flash extern (pentru comunicarea SPI cu External NOR Flash)
->> - **IO/BOOT** folosit pentru a intra in boot mode – legatura cu butonul de _boot_
->> - **RTC_PWM** pentru semnale Pulse Width Modulation trimise catre Real Time Clock
->> - **RTC_RST** pentru resetarea ceasului
->> - **INT_RTC** destinat semnalelor de intrerupere de la modulul RTC, de exemplu in cazul iesirii din moduri de functionare (sleep), pentru executarea unor sarcini periodice, cum ar fi un refresh al display-ului etc.
+Întregul circuit a fost conceput în jurul microcontrollerului ESP32-C6-WROOM, un modul preasamblat.
+-- Placa ESP32-WROOM-32 dispune de multiple interfețe pentru conectarea la diferite componente și senzori, cum ar fi pini de I/O, SPI, I2C și UART. Aceste interfețe facilitează integrarea componentelor externe și lărgesc gama de aplicații posibile. De asemenea, placa suportă WiFi 6 pe 2.4 GHz, are Bluetooth 5 integrat și include o antenă dedicată.
+
+ ESP32-C6 se leaga de cele mai importante module ale circuitului prin intermediul pinilor sai:
+ - **Alimentare si reset**
+ **3V3** aigura alimentrea modulului, **GND** legatura la masa, **EN** trebuie sa fie pe pozitia _HIGH_ pentru ca modulul sa functioneze (EN va fi controlat de catre butonul RESET)
+ - **USB C Connector**
+ deoarece ESP32-C6 are USB nativ, conexiunea se realizeaza direct prin liniile de date **USB_D+** si **USB_D-**, la pinii **GPIO13** si **GPIO14** ai modulului; nu mai este deci nevoie de un convertor serial extern
+ - **SD Card**
+ pentru a comunica cu dispozitive rapide precum SD Card se foloseste interfata SPI(Serial Peripheral Interface), folosind pinii **GPIO27(MISO)** - pentru transfer de la card la ESP, **GPIO7(MOSI)** - pentru transfer invers, **GPIO6(SCK)** -semnalul de ceas care asigura sincronizarea, respectiv **GPIO4(SS_SD)** - chip select
+ - **E-Paper Display**
+ pentru conexiunea si controlul ecranului dispozitivului se folosesc pinii **GPIO11(EPD_CS)** - Chip Select pentru display-ul EPD, **GPIO5(EPD_DC)** - pentru controlul display-ului, **GPIO21(EPD_RST)** - pentru resetarea display-ului, respectiv **GPIO26(EPD_BUSY)**
+ - **Environmental Sensor BME688**
+ avand in vedere ca se face comunicatia cu senzorul prin intermediul protocolului I2C, pentru stabilirea legaturii se vor folosi pinii **GPIO19(SDA)**, **GPIO20(SCL)** si **GPIO17(I2C_PW)** de pe microcontroller
+ - **UART(Serial Communication)**
+ ESP32-C6 are si interfete seriale, utile pentru debugging sau conexiuni cu alte dispozitive; pinii aferenti comunicarii UART sunt **TXD0** -pentru transmisia datelor respectiv **RXD0** - pentru receptie de date
+ - **Restul pinilor**
+ - **FLASH_CS** este un pin Chip Select pentru selectarea chipului flash extern (pentru comunicarea SPI cu External NOR Flash)
+ - **IO/BOOT** folosit pentru a intra in boot mode – legatura cu butonul de _boot_
+ - **RTC_PWM** pentru semnale Pulse Width Modulation trimise catre Real Time Clock
+ - **RTC_RST** pentru resetarea ceasului
+- **INT_RTC** destinat semnalelor de intrerupere de la modulul RTC, de exemplu in cazul iesirii din moduri de functionare (sleep), pentru executarea unor sarcini periodice, cum ar fi un refresh al display-ului etc.
 
 ## Errors
 La editarea PCB-ului in Fusion 360 am intampinat urmatoarele erori:
