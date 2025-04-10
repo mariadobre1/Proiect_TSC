@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2025-04-05T22:19:18Z",
+        "GenerationSoftware": {
+            "Application": "Fusion Electronics",
+            "Vendor": "Autodesk",
+            "Version": "9.7.0"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.67,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "Proiect TSC v106"
+        },
+        "Owner": "Dobre Andreea-Viktorya <andreea.dobre0508@stud.acs.upb.ro>",
+        "Size": {
+            "X": 170.2,
+            "Y": 111.2
+        }
+    }
+}
