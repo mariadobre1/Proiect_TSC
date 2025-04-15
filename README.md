@@ -104,8 +104,7 @@ Componentele principale ale circuitului sunt:
 
 ## Erori
 Urmatoarele erori au fost observate la finalizarea PCB-ului:
-<img width="600" alt="errors" src=Images/erori.png/>
-
+<img width="600" alt="errors" src=Images/EROEREFINAL.png/>
 
 
 
